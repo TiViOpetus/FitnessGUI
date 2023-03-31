@@ -114,7 +114,7 @@
      <string>Paino</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="NeckSpinBox">
+   <widget class="QSpinBox" name="neckSpinBox">
     <property name="geometry">
      <rect>
       <x>150</x>
@@ -134,7 +134,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QSpinBox" name="hipSpinBox_3">
+   <widget class="QSpinBox" name="hipSpinBox">
     <property name="geometry">
      <rect>
       <x>250</x>
@@ -218,6 +218,12 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="locale">
+     <locale language="Finnish" country="Finland"/>
+    </property>
+    <property name="displayFormat">
+     <string>yyyy-MM-dd</string>
+    </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
@@ -241,9 +247,22 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="locale">
+     <locale language="Finnish" country="Finland"/>
+    </property>
     <property name="placeholderText">
      <string>Valitse sukupuoli</string>
     </property>
+    <item>
+     <property name="text">
+      <string>Mies</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Nainen</string>
+     </property>
+    </item>
    </widget>
    <widget class="QLabel" name="bmiLabel">
     <property name="geometry">
@@ -358,7 +377,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

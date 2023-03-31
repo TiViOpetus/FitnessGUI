@@ -6,6 +6,7 @@ import sys
 from PyQt5 import QtCore # Core functionality of Qt
 from PyQt5 import QtWidgets # UI elements functionality
 from PyQt5.uic import loadUi
+import kuntoilija
 
 # Class for the main window
 class MainWindow(QtWidgets.QMainWindow):
@@ -20,12 +21,41 @@ class MainWindow(QtWidgets.QMainWindow):
         loadUi('main.ui', self)
 
         # Define UI Controls ie buttons and input fields
+        self.nameLE = self.nameLineEdit
+        self.birthDateE = self.birthDateEdit
+        self.genderCB = self.genderComboBox
+        self.weighingDateE = self.weighingDateEdit
+        self.heightSB = self.heightSpinBox
+        self.weightSB = self.weightSpinBox
+        self.neckSB =  self.neckSpinBox
+        self.waistSB = self.waistSpinBox 
+        self.hipSB = self.hipSpinBox
+        
         self.calculatePB = self.calculatePushButton
         self.calculatePB.clicked.connect(self.calculateAll)
 
+        self.savePB = self.savePushButton
+        self.savePB.clicked.connect(self.saveData)
+
     # Define slots ie methods
+
+    # Calculates BMI, Finnish and US fat percentages and updates corresponding labels
     def calculateAll(self):
-        self.bmiLabel.setText('100')
+        height = self.heightSB.value() # Spinbox value as an integer
+        weight = self.weightSB.value()
+        age = 100
+        gender = self.genderCB.currentText()
+        dateOfWeighing = str(self.weighingDateE.date().getDate())
+        
+        # Create an athlete from Kuntoilija class
+        # athlete = kuntoilija.Kuntoilija()
+        # bmi = athlete.bmi
+
+        self.bmiLabel.setText(dateOfWeighing)
+
+    # Saves data to disk
+    def saveData(self):
+        pass
 
 if __name__ == "__main__":
     # Create the application
