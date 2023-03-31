@@ -17,7 +17,7 @@ class MainWindow(QtWidgets.QMainWindow):
         super().__init__()
 
         # Load the UI file
-        self.main = loadUi('main.ui', self)
+        loadUi('main.ui', self)
 
         # Define UI Controls ie buttons and input fields
         self.calculatePB = self.calculatePushButton
@@ -25,7 +25,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Define slots ie methods
     def calculateAll(self):
-        self.bmiLabel.setValue('100')
+        self.bmiLabel.setText('100')
 
 if __name__ == "__main__":
     # Create the application
@@ -33,6 +33,6 @@ if __name__ == "__main__":
 
     # Create the Main Window object from MainWindow class and show it on the screen
     appWindow = MainWindow()
-    appWindow.main.show()
+    appWindow.show()
     sys.exit(app.exec())
     
