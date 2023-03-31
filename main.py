@@ -45,6 +45,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     # Calculates BMI, Finnish and US fat percentages and updates corresponding labels
     def calculateAll(self):
+        name = self.nameLE.text()
         height = self.heightSB.value() # Spinbox value as an integer
         weight = self.weightSB.value()
 
@@ -66,10 +67,10 @@ class MainWindow(QtWidgets.QMainWindow):
         age = timetools.datediff2(birthday, dateOfWeighing, 'year')
 
         # Create an athlete from Kuntoilija class
-        # athlete = kuntoilija.Kuntoilija()
-        # bmi = athlete.bmi
+        athlete = kuntoilija.Kuntoilija(name, height, weight, age, gender, dateOfWeighing)
+        bmi = athlete.bmi
 
-        self.bmiLabel.setText(dateOfWeighing)
+        self.bmiLabel.setText(str(bmi))
 
     # Saves data to disk
     def saveData(self):
