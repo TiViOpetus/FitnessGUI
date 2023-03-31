@@ -25,6 +25,7 @@ class MainWindow(QtWidgets.QMainWindow):
         self.birthDateE = self.birthDateEdit
         self.genderCB = self.genderComboBox
         self.weighingDateE = self.weighingDateEdit
+        self.weighingDateE.setDate(QtCore.QDate.currentDate())
         self.heightSB = self.heightSpinBox
         self.weightSB = self.weightSpinBox
         self.neckSB =  self.neckSpinBox
@@ -45,7 +46,7 @@ class MainWindow(QtWidgets.QMainWindow):
         weight = self.weightSB.value()
         age = 100
         gender = self.genderCB.currentText()
-        dateOfWeighing = str(self.weighingDateE.date().getDate())
+        dateOfWeighing = self.weighingDateE.date().toString(format=QtCore.Qt.ISODate)
         
         # Create an athlete from Kuntoilija class
         # athlete = kuntoilija.Kuntoilija()

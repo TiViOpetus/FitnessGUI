@@ -54,6 +54,15 @@
       <height>22</height>
      </rect>
     </property>
+    <property name="locale">
+     <locale language="Finnish" country="Finland"/>
+    </property>
+    <property name="displayFormat">
+     <string>yyyy-MM-dd</string>
+    </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -224,6 +233,9 @@
     <property name="displayFormat">
      <string>yyyy-MM-dd</string>
     </property>
+    <property name="calendarPopup">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
@@ -269,7 +281,7 @@
      <rect>
       <x>20</x>
       <y>220</y>
-      <width>101</width>
+      <width>311</width>
       <height>16</height>
      </rect>
     </property>
