@@ -7,6 +7,7 @@ from PyQt5 import QtCore # Core functionality of Qt
 from PyQt5 import QtWidgets # UI elements functionality
 from PyQt5.uic import loadUi
 import kuntoilija
+import timetools
 
 # Class for the main window
 class MainWindow(QtWidgets.QMainWindow):
@@ -25,7 +26,9 @@ class MainWindow(QtWidgets.QMainWindow):
         self.birthDateE = self.birthDateEdit
         self.genderCB = self.genderComboBox
         self.weighingDateE = self.weighingDateEdit
-        self.weighingDateE.setDate(QtCore.QDate.currentDate())
+
+        # Set the weighing date to the current date
+        self.weighingDateE.setDate(QtCore.QDate.currentDate()) 
         self.heightSB = self.heightSpinBox
         self.weightSB = self.weightSpinBox
         self.neckSB =  self.neckSpinBox
@@ -44,10 +47,24 @@ class MainWindow(QtWidgets.QMainWindow):
     def calculateAll(self):
         height = self.heightSB.value() # Spinbox value as an integer
         weight = self.weightSB.value()
-        age = 100
-        gender = self.genderCB.currentText()
+
+        #  Convert birthday to ISO string using QtCore's methods
+        birthday = self.birthDateE.date().toString(format=QtCore.Qt.ISODate)
+        
+        # Set Gender Value according to Combobox value
+        gendertext = self.genderCB.currentText()
+        if gendertext == 'Mies':
+            gender = 1
+
+        else:
+            gender = 0
+
+        # Convert Weighing day to ISO string    
         dateOfWeighing = self.weighingDateE.date().toString(format=QtCore.Qt.ISODate)
         
+        # Calculate time difference using our home made tools
+        age = timetools.datediff2(birthday, dateOfWeighing, 'year')
+
         # Create an athlete from Kuntoilija class
         # athlete = kuntoilija.Kuntoilija()
         # bmi = athlete.bmi
