@@ -8,6 +8,7 @@ from PyQt5 import QtWidgets as QW # UI elements functionality
 from PyQt5.uic import loadUi # Reads the UI file
 import kuntoilija # Home brew module for athlete objects
 import timetools # DIY module for date and time calculations
+import athleteFile # Home made module for processing data files
 # TODO: Import some library able to plot trends and make it as widget in the UI
 
 # Class for the main window
@@ -58,6 +59,19 @@ class MainWindow(QW.QMainWindow):
         self.savePB = self.findChild(QW.QPushButton, 'savePushButton')
         self.savePB.clicked.connect(self.saveData)
         self.savePB.setEnabled(False)
+
+        # Read data from file and save it to a list
+        self.dataList = []
+        jsonFile = athleteFile.ProcessJsonFile()
+        try:
+            pass
+        except Exception as e:
+            raise e
+        
+        self.dataList = data
+
+        # Read previous athlete_data from disk
+
 
     # Define slots ie methods
 
@@ -130,16 +144,19 @@ class MainWindow(QW.QMainWindow):
         fiFatPercentage = athlete.fi_rasva
         usaFatPercentage = athlete.usa_rasva
         
-
         # Set fat percentage labels
         self.fatFiLabel.setText(str(fiFatPercentage))
         self.fatUsLabel.setText(str(usaFatPercentage))
 
-    def constructData(self, athlete, fiFat, usaFat):
+        self.dataRow = self.constructData(athlete)
+        print(self.dataRow)
+
+    def constructData(self, athlete):
         # A dictionary for single weighing of an athlete
         athlete_data_row = {'nimi': athlete.nimi, 'pituus': athlete.pituus, 'paino': athlete.paino,
                 'ika': athlete.ika, 'sukupuoli': athlete.sukupuoli, 'pvm': athlete.punnitus_paiva,
-                'bmi': athlete.bmi, 'rasvaprosenttiFi': fiFat, 'rasvaprosenttiUs': usaFat}
+                'bmi': athlete.bmi, 'rasvaprosenttiFi': athlete.fi_rasva, 'rasvaprosenttiUs': athlete.usa_rasva
+                }
         return athlete_data_row
     
     # Saves data to disk

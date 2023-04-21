@@ -35,7 +35,12 @@ class ProcessJsonFile():
         Returns:
             tuple: Error code, Error message, detailed error message, data
         """
-        data = (0, message, detailedMessage, readinfo)
+        # Read previous athlete_data from disk
+        with open(file, 'r') as fileToRead:
+            athlete_data = json.load(fileToRead)
+            message = 'OK'
+            detailedMessage = 'Data read successfully from disk'
+            data = (0, message, detailedMessage, athlete_data)
         return data
 
     def appendData(self, file, data):
