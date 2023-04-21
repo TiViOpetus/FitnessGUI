@@ -64,11 +64,12 @@ class MainWindow(QW.QMainWindow):
         self.dataList = []
         jsonFile = athleteFile.ProcessJsonFile()
         try:
-            pass
+            data = jsonFile.readData('athleteData.json')
+            self.dataList = data[3]
         except Exception as e:
-            raise e
+            data = (1, 'Error', str(e), self.dataList)
         
-        self.dataList = data
+        
 
         # Read previous athlete_data from disk
 
@@ -161,8 +162,18 @@ class MainWindow(QW.QMainWindow):
     
     # Saves data to disk
     def saveData(self):
-        pass
-
+        self.dataList.append(self.dataRow)
+        jsonfile2 = athleteFile.ProcessJsonFile()
+        status = jsonfile2.saveData('athleteData.json', self.dataList)
+        self.nameLE.clear()
+        zeroDate = QtCore.QDate(1900, 1, 1)
+        self.birthDateE.setDate(zeroDate)
+        self.heightSB.setValue(100)
+        self.weightSB.setValue(20)
+        self.neckSB.setValue(10)
+        self.waistSB.setValue(30)
+        self.hipsSB.setValue(50)
+        self.savePB.setEnabled(False)
 
 if __name__ == "__main__":
     # Create the application
