@@ -14,3 +14,9 @@ def test_datediff():
 def test_timediff():
     assert round(timetools.timediff('11:30:15', '10:10:05'), 4) == 1.3361
     assert round(timetools.timediff('10:10:05', '11:30:15'), 4) == 1.3361
+
+def test_datefiff2():
+    pass
+def test_timediff2():
+    something = 0
+    pass
