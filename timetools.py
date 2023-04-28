@@ -119,6 +119,18 @@ def dateTimeDiff2(start, end, unit):
     value = seconds / divider
     return value
 
+def finnishWeekdayOrder(weekday):
+    weekdayNumber = {'maanantai': 1, 'tiistai': 2, 'keskiviikko' : 3,
+     'torstai' : 4, 'perjantai': 5, 'lauantai': 6, 'sunnuntai': 7}
+    try:
+        value = f'{weekday} on viikon {weekdayNumber[weekday]}. päivä'
+    except Exception as error:
+        value = f'{weekday} ei ole viikonpäivä, tarkista syötteesi'
+    return value
+    
+
+    
+
 if __name__ == "__main__":
     
     # Let's test date difference
@@ -135,3 +147,4 @@ if __name__ == "__main__":
     print('ero oli', ero, 'minuuttia')
 
     print(dateTimeDiff('2023-04-28 10:00:00', '2023-04-29 11:00:00'), 'on v1')
+
