@@ -15,8 +15,21 @@ def test_timediff():
     assert round(timetools.timediff('11:30:15', '10:10:05'), 4) == 1.3361
     assert round(timetools.timediff('10:10:05', '11:30:15'), 4) == 1.3361
 
-def test_datefiff2():
-    pass
+# Test if dateTimeDiff works correctly
+def test_dateTimeDiff():
+    assert timetools.dateTimeDiff('2023-04-27 10:00:00', '2023-04-28 12:30:00') == 26.5
+    
+def test_datediff2():
+    assert timetools.datediff2('2023-04-10', '2023-04-12', 'day') == 2
+    assert timetools.datediff2('2023-04-10', '2023-06-09', 'month') == 2
+    assert timetools.datediff2('2023-04-10', '2025-04-09', 'year') == 2
+    
 def test_timediff2():
-    something = 0
-    pass
+    assert timetools.timediff2('10:00:00', '12:30:00', 'hour') == 2.5
+    assert timetools.timediff2('10:00:00', '12:30:00', 'minute') == 150
+    assert timetools.timediff2('10:00:00', '12:30:00', 'second') == 9000
+   
+def test_dateTimeDiff2():
+    assert round(timetools.dateTimeDiff2('2023-04-27 10:00:00', '2023-04-28 12:30:00', 'day'), 1) == 1.1
+    assert timetools.dateTimeDiff2('2023-04-27 10:00:00', '2023-04-28 12:30:00', 'hour') == 26.5
+    assert timetools.dateTimeDiff2('2023-04-27 10:00:00', '2023-04-28 12:30:00', 'minute') == 1590
