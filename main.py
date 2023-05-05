@@ -58,7 +58,10 @@ class MainWindow(QW.QMainWindow):
         self.calculatePB.clicked.connect(self.calculateAll)
         self.calculatePB.setEnabled(False)
 
-        
+        # Temporary push button for inserting test values into controls
+        self.testPB = self.testUiPushButton
+        self.testPB.clicked.connect(self.insertTestValues)
+
         # self.savePB = self.savePushButton
         self.savePB = self.findChild(QW.QPushButton, 'savePushButton')
         self.savePB.clicked.connect(self.saveData)
@@ -81,10 +84,46 @@ class MainWindow(QW.QMainWindow):
     # Define slots ie methods
 
     # Create a alerting method
-    def alert(self, message, detailedMessage):
+    def alert(self, windowTitle, message, detailedMessage):
         msgBox = QW.QMessageBox()
-        msgBox.setIcon(QW.QMessageBox.critical)
-        msgBox.setWindowTitle('Tapahtui vakava virhe')
+        msgBox.setIcon(QW.QMessageBox.Critical)
+        msgBox.setWindowTitle(windowTitle)
+        msgBox.setText(message)
+        msgBox.setDetailedText(detailedMessage)
+        msgBox.exec()
+
+    def warn(self, windowTitle, message, detailedMessage):
+        msgBox = QW.QMessageBox()
+        msgBox.setIcon(QW.QMessageBox.Warning)
+        msgBox.setWindowTitle(windowTitle)
+        msgBox.setText(message)
+        msgBox.setDetailedText(detailedMessage)
+        msgBox.exec()
+
+    def inform(self, windowTitle, message, detailedMessage):
+        msgBox = QW.QMessageBox()
+        msgBox.setIcon(QW.QMessageBox.Information)
+        msgBox.setWindowTitle(windowTitle)
+        msgBox.setText(message)
+        msgBox.setDetailedText(detailedMessage)
+        msgBox.exec()
+
+    def showMessageBox(self, windowTitle, message, detailedMessage, icon='Information'):
+        """Creates a message box for various types of messages
+
+        Args:
+            windowTitle (str): Header for the message window
+            message (str): Message to be shown
+            detailedMessage (str): A message that can be shown by pressing details button
+            icon (str, optional):  Allowed values: NoIcon, Information, Question, Warning and Critical
+            Defaults to Information.
+        """
+        iconTypes = {'Information': QW.QMessageBox.Information, 'NoIcon': QW.QMessageBox.NoIcon,
+         'Question': QW.QMessageBox.Question, 'Warning': QW.QMessageBox.Warning ,
+         'Critical': QW.QMessageBox.Critical}
+        msgBox = QW.QMessageBox()
+        msgBox.setIcon(iconTypes[icon])
+        msgBox.setWindowTitle(windowTitle)
         msgBox.setText(message)
         msgBox.setDetailedText(detailedMessage)
         msgBox.exec()
@@ -120,7 +159,17 @@ class MainWindow(QW.QMainWindow):
         else:
             self.hipsSB.setEnabled(False)
 
-
+    def insertTestValues(self):
+        # Set test values to all controls
+        self.nameLE.setText('Teppo Testi')
+        testBirthDay = QtCore.QDate(1999, 12, 31)
+        self.birthDateE.setDate(testBirthDay)
+        self.genderCB.setCurrentText('Mies')
+        self.heightSB.setValue(171)
+        self.weightSB.setValue(75)
+        self.neckSB.setValue(30)
+        self.waistSB.setValue(90)
+        
     # Calculates BMI, Finnish and US fat percentages and updates corresponding labels
     def calculateAll(self):
         name = self.nameLE.text()
@@ -146,6 +195,9 @@ class MainWindow(QW.QMainWindow):
         # Calculate time difference using our home made tools
         age = timetools.datediff2(birthday, dateOfWeighing, 'year')
         neck = self.neckSB.value()
+        if neck < 21:
+            #self.alert('Tarkista kaulan koko', 'Kaulan ympärys liian pieni', 'Kaulan koko voi olla välillä 21 - 60 cm')
+            self.showMessageBox('Tarkista kaulan koko', 'Kaulan ympärys virheellinen', 'Sallitut arvot 21 - 60 cm', 'Warning')
         waist = self.waistSB.value()
         hips = self.hipsSB.value()
 
@@ -199,6 +251,9 @@ class MainWindow(QW.QMainWindow):
             self.waistSB.setValue(30)
             self.hipsSB.setValue(50)
             self.savePB.setEnabled(False)
+
+    def restoreDefaults(self):
+        pass
 
 if __name__ == "__main__":
     # Create the application
