@@ -476,6 +476,7 @@
     <property name="title">
      <string>Ohjeet</string>
     </property>
+    <addaction name="actionOhje"/>
    </widget>
    <addaction name="menuTiedosto"/>
    <addaction name="menuMuokkaa"/>
@@ -550,6 +551,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionOhje">
+   <property name="text">
+    <string>Ohje</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
  </widget>

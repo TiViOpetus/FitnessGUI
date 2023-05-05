@@ -119,5 +119,27 @@
         "bmi": 25.6,
         "rasvaprosenttiFi": 28.5,
         "rasvaprosenttiUs": 30.4
+    },
+    {
+        "nimi": "Teppo Testi",
+        "pituus": 171.0,
+        "paino": 75.0,
+        "ika": 23.4,
+        "sukupuoli": 1,
+        "pvm": "2023-05-05",
+        "bmi": 25.6,
+        "rasvaprosenttiFi": 19.9,
+        "rasvaprosenttiUs": 32.6
+    },
+    {
+        "nimi": "Teppo Testi",
+        "pituus": 171.0,
+        "paino": 75.0,
+        "ika": 23.4,
+        "sukupuoli": 1,
+        "pvm": "2023-05-05",
+        "bmi": 25.6,
+        "rasvaprosenttiFi": 19.9,
+        "rasvaprosenttiUs": 26.8
     }
 ]

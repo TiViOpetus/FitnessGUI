@@ -9,6 +9,7 @@ from PyQt5.uic import loadUi # Reads the UI file
 import kuntoilija # Home brew module for athlete objects
 import timetools # DIY module for date and time calculations
 import athleteFile # Home made module for processing data files
+import ohje
 # TODO: Import some library able to plot trends and make it as widget in the UI
 
 # Class for the main window
@@ -62,7 +63,7 @@ class MainWindow(QW.QMainWindow):
         self.testPB = self.testUiPushButton
         self.testPB.clicked.connect(self.insertTestValues)
 
-        # self.savePB = self.savePushButton
+        # A push button for savig user data
         self.savePB = self.findChild(QW.QPushButton, 'savePushButton')
         self.savePB.clicked.connect(self.saveData)
         self.savePB.setEnabled(False)
@@ -76,7 +77,9 @@ class MainWindow(QW.QMainWindow):
         except Exception as e:
             data = (1, 'Error', str(e), self.dataList)
         
-        
+        # MENU ACTIONS
+        self.actionPalauta_oletukset.triggered.connect(self.restoreDefaults)
+        self.actionOhje.triggered.connect(self.openHelpDialog)
 
         # Read previous athlete_data from disk
 
@@ -242,18 +245,23 @@ class MainWindow(QW.QMainWindow):
             self.alert(status[1], status[2])
         else:    
             # Set all inputs to their default values
-            self.nameLE.clear()
-            zeroDate = QtCore.QDate(1900, 1, 1)
-            self.birthDateE.setDate(zeroDate)
-            self.heightSB.setValue(100)
-            self.weightSB.setValue(20)
-            self.neckSB.setValue(10)
-            self.waistSB.setValue(30)
-            self.hipsSB.setValue(50)
-            self.savePB.setEnabled(False)
+            self.restoreDefaults()
 
     def restoreDefaults(self):
-        pass
+        # Set all inputs to their default values
+        self.nameLE.clear()
+        zeroDate = QtCore.QDate(1900, 1, 1)
+        self.birthDateE.setDate(zeroDate)
+        self.heightSB.setValue(100)
+        self.weightSB.setValue(20)
+        self.neckSB.setValue(10)
+        self.waistSB.setValue(30)
+        self.hipsSB.setValue(50)
+        self.savePB.setEnabled(False)
+
+    def openHelpDialog(self):
+        openHelp = ohje.OpenHelp()
+        openHelp.exec()
 
 if __name__ == "__main__":
     # Create the application
