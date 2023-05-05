@@ -86,5 +86,38 @@
         "bmi": 30.9,
         "rasvaprosenttiFi": 26.5,
         "rasvaprosenttiUs": 28.3
+    },
+    {
+        "nimi": "MikaV",
+        "pituus": 171.0,
+        "paino": 75.0,
+        "ika": 60.9,
+        "sukupuoli": 1,
+        "pvm": "2023-05-05",
+        "bmi": 25.6,
+        "rasvaprosenttiFi": 28.5,
+        "rasvaprosenttiUs": 28.7
+    },
+    {
+        "nimi": "MikaV",
+        "pituus": 171.0,
+        "paino": 75.0,
+        "ika": 122.9,
+        "sukupuoli": 1,
+        "pvm": "2023-05-05",
+        "bmi": 25.6,
+        "rasvaprosenttiFi": 42.8,
+        "rasvaprosenttiUs": 28.7
+    },
+    {
+        "nimi": "MikaV",
+        "pituus": 171.0,
+        "paino": 75.0,
+        "ika": 60.9,
+        "sukupuoli": 1,
+        "pvm": "2023-05-05",
+        "bmi": 25.6,
+        "rasvaprosenttiFi": 28.5,
+        "rasvaprosenttiUs": 30.4
     }
 ]

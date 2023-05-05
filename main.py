@@ -47,14 +47,18 @@ class MainWindow(QW.QMainWindow):
         self.hipsSB = self.hipsSpinBox
         self.hipsSB.setEnabled(False)
         self.hipsSB.valueChanged.connect(self.activateCalculatePB)
+
+        # Create a status bar for showing informational messages
+        self.statusBar = QW.QStatusBar()
+        self.setStatusBar(self.statusBar)
+        self.statusBar.show()
         
-        # TODO: Disable Calculate button until values have been edited
         # self.calculatePB = self.calculatePushButton
         self.calculatePB = self.findChild(QW.QPushButton, 'calculatePushButton')
         self.calculatePB.clicked.connect(self.calculateAll)
         self.calculatePB.setEnabled(False)
 
-        # TODO: Disable Save button until new values are calculated
+        
         # self.savePB = self.savePushButton
         self.savePB = self.findChild(QW.QPushButton, 'savePushButton')
         self.savePB.clicked.connect(self.saveData)
@@ -76,6 +80,14 @@ class MainWindow(QW.QMainWindow):
 
     # Define slots ie methods
 
+    # Create a alerting method
+    def alert(self, message, detailedMessage):
+        msgBox = QW.QMessageBox()
+        msgBox.setIcon(QW.QMessageBox.critical)
+        msgBox.setWindowTitle('Tapahtui vakava virhe')
+        msgBox.setText(message)
+        msgBox.setDetailedText(detailedMessage)
+        msgBox.exec()
     
     def activateCalculatePB(self):
         self.calculatePB.setEnabled(True)
@@ -162,22 +174,36 @@ class MainWindow(QW.QMainWindow):
     
     # Saves data to disk
     def saveData(self):
+
+        # Add current values to a list
         self.dataList.append(self.dataRow)
+
+        # Save list to a json file
         jsonfile2 = athleteFile.ProcessJsonFile()
         status = jsonfile2.saveData('athleteData.json', self.dataList)
-        self.nameLE.clear()
-        zeroDate = QtCore.QDate(1900, 1, 1)
-        self.birthDateE.setDate(zeroDate)
-        self.heightSB.setValue(100)
-        self.weightSB.setValue(20)
-        self.neckSB.setValue(10)
-        self.waistSB.setValue(30)
-        self.hipsSB.setValue(50)
-        self.savePB.setEnabled(False)
+
+        # Show message about status of saving on statusbar
+        self.statusBar.showMessage(status[1], 4000)
+
+        # TODO: Call error message box if error code is not 0
+        if status[0] != 0:
+            self.alert(status[1], status[2])
+        else:    
+            # Set all inputs to their default values
+            self.nameLE.clear()
+            zeroDate = QtCore.QDate(1900, 1, 1)
+            self.birthDateE.setDate(zeroDate)
+            self.heightSB.setValue(100)
+            self.weightSB.setValue(20)
+            self.neckSB.setValue(10)
+            self.waistSB.setValue(30)
+            self.hipsSB.setValue(50)
+            self.savePB.setEnabled(False)
 
 if __name__ == "__main__":
     # Create the application
     app = QW.QApplication(sys.argv)
+    app.setStyle('Fusion') # Use fusion style
 
     # Create the Main Window object from MainWindow class and show it on the screen
     appWindow = MainWindow()
