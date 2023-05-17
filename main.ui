@@ -495,7 +495,7 @@
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="sloganLabel">
     <property name="geometry">
      <rect>
       <x>10</x>
