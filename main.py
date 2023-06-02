@@ -162,13 +162,14 @@ class MainWindow(QW.QMainWindow):
             self.calculatePB.setEnabled(False)
 
         if self.genderCB.currentText() == 'Nainen' or self.genderCB.currentText() == '':
-            self.hipsHS.show() # Show Hips slider
+            self.hipsHS.show() # Show Hips slider and the label
+            self.labelHips.show()
             self.dimensionBox.setStyleSheet("background-image : url(NaisSlice.png)") # Change the bg image
 
             if self.hipsHS.value() == 50:
                 self.calculatePB.setEnabled(False)
         else:
-            self.hipsHS.hide() # Hide Hips slider
+            self.hipsHS.hide() # Hide Hips slider and the label
             self.labelHips.hide()
             self.dimensionBox.setStyleSheet("background-image : url(MiesSlice.png)") # Change the bg image
 
