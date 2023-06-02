@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="pictures">
+    <file>TaustaPieni.png</file>
+    <file>Viivakoodi.PNG</file>
+    <file>hirviguiTiedostot.png</file>
+    <file>Tausta.png</file>
+  </qresource>
+</RCC>

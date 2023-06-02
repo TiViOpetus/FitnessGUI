@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="bgimages">
+    <file>Kuntoilutausta.png</file>
+    <file>KuntoilutaustaPieni.png</file>
+  </qresource>
+</RCC>

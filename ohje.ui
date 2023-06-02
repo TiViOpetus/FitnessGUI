@@ -6,31 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>395</width>
-    <height>109</height>
+    <width>383</width>
+    <height>444</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>30</y>
-     <width>471</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Tämä on ohje, jossa kerrotaan, miten tätä ohjelmaa käytetään</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="closePushButton">
    <property name="geometry">
     <rect>
-     <x>290</x>
-     <y>70</y>
+     <x>240</x>
+     <y>370</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -39,7 +26,58 @@
     <string>Sulje</string>
    </property>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>20</y>
+     <width>351</width>
+     <height>411</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/pictures/KuntoilutaustaPieni.png);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>90</y>
+     <width>271</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgba(255, 255, 255, 200);</string>
+   </property>
+   <property name="text">
+    <string>Tämä on ohje, jossa kerrotaan, miten tätä ohjelmaa käytetään ja siinä on kauheasti kaiken näköisiä ohjeita ja kovasti kehutaan</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <zorder>frame</zorder>
+  <zorder>closePushButton</zorder>
+  <zorder>label</zorder>
  </widget>
- <resources/>
+ <resources>
+  <include location="ohjeresources.qrc"/>
+ </resources>
  <connections/>
 </ui>
